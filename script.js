@@ -1,7 +1,7 @@
 var cell = document.getElementsByClassName('cell'),
 	reset = document.getElementsByClassName('btn btn-primary'),
 	message = document.getElementsByClassName('message'),
-	player = 'X';
+	player = 'X',
 	stepCount = 0,
 	winCombination = [
 		[1,2,3],
@@ -16,13 +16,29 @@ var cell = document.getElementsByClassName('cell'),
 	dataX = [],
 	dataO = [];
 
-	for(var i = 0; i < cell.lenght; i++){
-		cell[i].addEventListenner('click', currentStap);
+
+	for(var i = 0; i < cell.length; i++) {
+		cell[i].addEventListener('click', currentStep);
 	}
 
 	function currentStep(){
-		var num = +this.getAttribut('cell')
+		var num = this.getAttribute('cell');
 		if(!this.textContent){
 			this.innerText = player;
+			changePlayer();
+			stepCount++;
+			(stepCount === 9) ? 
+			(message.innerText = 'Ничья') : 
+			(message.innerText = 'Ходит игрок ' + player)
 		}
 	}
+
+	function changePlayer(){
+		player === 'X' ? (player = 'O') : (player = 'X');
+	}
+
+	reset.addEventListener('click', function(){
+			for(var i = 0; i < cell.length; i++) {
+			cell[i].innerText = '';
+		}
+	});
