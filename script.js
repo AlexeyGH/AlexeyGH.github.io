@@ -38,7 +38,7 @@ var cell = document.getElementsByClassName('cell'),
 	}
 
 	reset.addEventListener('click', function(){
-			for(var i = 0; i < cell.length; i++) {
-			cell[i].innerText = '';
-		}
-	});
+	for(var i = 0; i < cell.length; i++) {
+		cell[i].innerText = '';
+	}
+});
